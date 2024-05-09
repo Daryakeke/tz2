@@ -1,2 +1,2 @@
 # tz_2
-![](https://byob.yarr.is/Daryakeke/tz2/junit)
+![JavaCI](https://github.com/Daryakeke/tz2/actions/workflows/checker.yml/badge.svg)
