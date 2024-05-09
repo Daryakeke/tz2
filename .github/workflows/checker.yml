@@ -26,9 +26,8 @@ jobs:
       - name: Time badge
         uses: RubbaBoy/BYOB@v1.3.0
         with:
-          NAME: 'Updated at:'
-          LABEL: 'GitHub'
+          NAME: junit
+          LABEL: 'Updated at'
           STATUS: ${{ steps.date.outputs.data }}
           COLOR: blue
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
