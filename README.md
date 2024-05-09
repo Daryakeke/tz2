@@ -1,2 +1,2 @@
 # tz_2
-![](https://byob.yarr.is/Daryakeke/tz2/junit
+![](https://byob.yarr.is/Daryakeke/tz2/junit)
