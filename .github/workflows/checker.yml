@@ -6,9 +6,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    outputs:
-      passed: ${{steps.info_step.outputs.passed}}
-      failed: ${{steps.info_step.outputs.failed}}
+    # outputs:
+      # passed: ${{steps.info_step.outputs.passed}}
+      # failed: ${{steps.info_step.outputs.failed}}
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 22
@@ -20,11 +20,16 @@ jobs:
       run: mvn --batch-mode --update-snapshots package
     - name: Run tests
       run: mvn test
-      id: info_step
-      uses: mikepenz/action-junit-report@v4
-      if: success() || failure()
+      # id: info_step
+      # uses: mikepenz/action-junit-report@v4
+      uses: dorny/test-reporter@v1
+      if: always()
       with:
-        report_paths: '**/build/test-results/test/TEST-*.xml'
+        name: Maven Tests
+        path: target/surefire-reports/*.xml
+        reporter: java-junit
+        fail-on-error: true
+
   telegram_success:
     if: success()
     needs: [build]
@@ -45,7 +50,7 @@ jobs:
             
             Repository: ${{ github.repository }}
             
-            Status: All ${{steps.build.outputs.passed}} tests have passed
+            # Status: All ${{steps.build.outputs.passed}} tests have passed
   telegram_failure:
     if: failure()
     needs: [build]
@@ -64,4 +69,4 @@ jobs:
             Repository: ${{ github.repository }}
             
             Status: failing
-            Status: ${{steps.build.outputs.passed}} tests have passed, ${{steps.build.outputs.failed}} tests have failed
+            # Status: ${{steps.build.outputs.passed}} tests have passed, ${{steps.build.outputs.failed}} tests have failed
