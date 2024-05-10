@@ -123,6 +123,7 @@ public class tz_2_programTest {
         assertEquals(max, 945915);
     }
     
+    @Test
     public void _max4time() {
     long startTime = System.currentTimeMillis();
     setUp("src/test/_tests/test1.txt");
