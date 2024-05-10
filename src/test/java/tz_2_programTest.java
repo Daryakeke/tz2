@@ -25,14 +25,7 @@ public class tz_2_programTest {
             System.err.println("File not found!");
         }
     }
-    @Test
-    public void _LIE() {
-        setUp("src/test/_tests/minmax1.txt");
-        int min = tz_2_program._min(numbers);
-        assertEquals(min, 10);
-    }
     
-
     @Test
     public void _min1() {
         setUp("src/test/_tests/minmax1.txt");
