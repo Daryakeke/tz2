@@ -18,6 +18,11 @@ jobs:
       run: mvn --batch-mode --update-snapshots package
     - name: Run tests
       run: mvn test
+    - uses: actions/upload-artifact@v3
+      if: success() || failure()
+      with:
+          name: test-results
+          path: tests-junit.xml
   telegram_success:
     if: success()
     needs: [build]
