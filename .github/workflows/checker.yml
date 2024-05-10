@@ -18,11 +18,9 @@ jobs:
       run: mvn --batch-mode --update-snapshots package
     - name: Run tests
       run: mvn test
-    - uses: actions/upload-artifact@v3
       if: success() || failure()
-      with:
-          name: test-results
-          path: tests-junit.xml
+      run: mvn surefire-report:report
+      
   telegram_success:
     if: success()
     needs: [build]
@@ -41,6 +39,7 @@ jobs:
             Repository: ${{ github.repository }}
             
             Status: passed
+            See the results: https://rawcdn.githack.com/Daryakeke/tz2/main/target/site/surefire-report.html
   telegram_failure:
     if: failure()
     needs: [build]
@@ -59,3 +58,4 @@ jobs:
             Repository: ${{ github.repository }}
             
             Status: failing
+            See the results: https://rawcdn.githack.com/Daryakeke/tz2/main/target/site/surefire-report.html
