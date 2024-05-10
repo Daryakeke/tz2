@@ -6,7 +6,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 22
@@ -18,9 +17,20 @@ jobs:
       run: mvn --batch-mode --update-snapshots package
     - name: Run tests
       run: mvn test
+  junit_report:
+   if: always()
+   needs: [build]
+   runs-on: ubuntu-latest
+   outputs:
+         passed: ${{steps.info_step.outputs.passed}}
+         failed: ${{steps.info_step.outputs.failed}}
+   steps:
+     - name: tests info
+       id: info_step
+       uses: mikepenz/action-junit-report@v4
   telegram_success:
     if: success()
-    needs: [build]
+    needs: [junit_report]
     name: Telegram_success
     runs-on: ubuntu-latest
     steps:
@@ -32,13 +42,13 @@ jobs:
           message: |
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
-            
+
             Repository: ${{ github.repository }}
-            
-            Status: passed
+
+            Status: All ${{steps.junit_report.outputs.passed}} tests have passed
   telegram_failure:
     if: failure()
-    needs: [build]
+    needs: [junit_report]
     name: Telegram_failure
     runs-on: ubuntu-latest
     steps:
@@ -50,7 +60,7 @@ jobs:
           message: |
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
-            
+
             Repository: ${{ github.repository }}
-            
-            Status: failing
+
+            Status: ${{steps.junit_report.outputs.passed}} tests have passed, ${{steps.junit_report.outputs.failed}} tests have failed
