@@ -111,8 +111,12 @@ public class tz_2_programTest {
     }
     @Test
     public void _min4() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test1.txt");
         int min = tz_2_program._min(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        assertTrue(elapsedTime >= 0);
         assertEquals(min, 77880);
     }
 
@@ -137,20 +141,32 @@ public class tz_2_programTest {
 
     @Test
     public void _sum4() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test1.txt");
         long cur = tz_2_program._sum(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
         assertEquals(cur, 5123979);
+        assertTrue(elapsedTime >= 0);
     }
 
     @Test
     public void _mult4() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test1.txt");
         String cur = tz_2_program._mult(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
         assertEquals(cur, "-5050079263798634496");
+        assertTrue(elapsedTime >= 0);
     }
     public void _min5() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test2.txt");
         int min = tz_2_program._min(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        assertTrue(elapsedTime >= 0);
         assertEquals(min, 1104);
     }
 
@@ -173,20 +189,32 @@ public class tz_2_programTest {
 
     @Test
     public void _sum5() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test2.txt");
         long cur = tz_2_program._sum(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        assertTrue(elapsedTime >= 0);
         assertEquals(cur, 508134433);
     }
 
     @Test
     public void _mult5() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test2.txt");
         String cur = tz_2_program._mult(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        assertTrue(elapsedTime >= 0);
         assertEquals(cur, "произведение вышло за пределы диапазона значений long");
     }
     public void _min6() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test3.txt");
         int min = tz_2_program._min(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        assertTrue(elapsedTime >= 0);
         assertEquals(min, 1);
     }
 
@@ -211,16 +239,24 @@ public class tz_2_programTest {
 
     @Test
     public void _sum6() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test3.txt");
         long cur = tz_2_program._sum(numbers);
         String q = String.valueOf(cur);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        assertTrue(elapsedTime >= 0);
         assertEquals(q, "499953798489");
     }
 
     @Test
     public void _mult6() {
+        long startTime = System.currentTimeMillis();
         setUp("src/test/_tests/test3.txt");
         String cur = tz_2_program._mult(numbers);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        assertTrue(elapsedTime >= 0);
         assertEquals(cur, "произведение вышло за пределы диапазона значений long");
     }
 }
