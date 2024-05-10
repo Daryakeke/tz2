@@ -122,6 +122,17 @@ public class tz_2_programTest {
         int max = tz_2_program._max(numbers);
         assertEquals(max, 945915);
     }
+    
+    public void _max4time() {
+    long startTime = System.currentTimeMillis();
+    setUp("src/test/_tests/test1.txt");
+    int max = tz_2_program._max(numbers);
+    long endTime = System.currentTimeMillis();
+    long elapsedTime = endTime - startTime;
+    assertEquals(max, 945915);
+    assertTrue(elapsedTime >= 0);
+    }
+
 
     @Test
     public void _sum4() {
