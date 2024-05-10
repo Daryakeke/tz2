@@ -6,7 +6,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      passed: ${{steps.info_step.outputs.passed}}
+      failed: ${{steps.info_step.outputs.failed}}
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 22
@@ -19,7 +21,11 @@ jobs:
     - name: Run tests
       run: mvn test
       if: success() || failure()
-      run: mvn surefire-report:report
+      id: info_step
+      uses: mikepenz/action-junit-report@v4
+      if: success() || failure()
+      with:
+        report_paths: '**/build/test-results/test/TEST-*.xml'
       
   telegram_success:
     if: success()
@@ -27,6 +33,9 @@ jobs:
     name: Telegram_success
     runs-on: ubuntu-latest
     steps:
+        uses: actions/download-artifact@v4
+        with:
+          name: target_report
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
@@ -38,8 +47,7 @@ jobs:
             
             Repository: ${{ github.repository }}
             
-            Status: passed
-            See the results: https://rawcdn.githack.com/Daryakeke/tz2/main/target/site/surefire-report.html
+            Status: All ${{steps.build.outputs.passed}} tests have passed
   telegram_failure:
     if: failure()
     needs: [build]
@@ -58,4 +66,4 @@ jobs:
             Repository: ${{ github.repository }}
             
             Status: failing
-            See the results: https://rawcdn.githack.com/Daryakeke/tz2/main/target/site/surefire-report.html
+            Status: ${{steps.build.outputs.passed}} tests have passed, ${{steps.build.outputs.failed}} tests have failed
