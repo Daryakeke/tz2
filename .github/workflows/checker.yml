@@ -53,4 +53,4 @@ jobs:
             
             Repository: ${{ github.repository }}
             
-            Status: some test are failing
+            Status: some tests are failing
