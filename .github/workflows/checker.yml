@@ -20,13 +20,11 @@ jobs:
       run: mvn --batch-mode --update-snapshots package
     - name: Run tests
       run: mvn test
-      if: success() || failure()
       id: info_step
       uses: mikepenz/action-junit-report@v4
       if: success() || failure()
       with:
         report_paths: '**/build/test-results/test/TEST-*.xml'
-      
   telegram_success:
     if: success()
     needs: [build]
