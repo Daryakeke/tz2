@@ -25,6 +25,17 @@ public class tz_2_programTest {
             System.err.println("File not found!");
         }
     }
+    
+    @Test
+    public void _lie() {
+    long startTime = System.currentTimeMillis();
+    setUp("src/test/_tests/test1.txt");
+    int max = tz_2_program._max(numbers);
+    long endTime = System.currentTimeMillis();
+    long elapsedTime = endTime - startTime;
+    assertEquals(max, 12);
+    assertTrue(elapsedTime >= 0);
+    }
 
     @Test
     public void _min1() {
@@ -160,6 +171,16 @@ public class tz_2_programTest {
         int max = tz_2_program._max(numbers);
         assertEquals(max, 999921);
     }
+    @Test
+    public void _max5time() {
+    long startTime = System.currentTimeMillis();
+    setUp("src/test/_tests/test2.txt");
+    int max = tz_2_program._max(numbers);
+    long endTime = System.currentTimeMillis();
+    long elapsedTime = endTime - startTime;
+    assertEquals(max, 999921);
+    assertTrue(elapsedTime >= 0);
+    }
 
     @Test
     public void _sum5() {
@@ -185,6 +206,17 @@ public class tz_2_programTest {
         setUp("src/test/_tests/test3.txt");
         int max = tz_2_program._max(numbers);
         assertEquals(max, 1000000);
+    }
+    
+    @Test
+    public void _max6time() {
+    long startTime = System.currentTimeMillis();
+    setUp("src/test/_tests/test3.txt");
+    int max = tz_2_program._max(numbers);
+    long endTime = System.currentTimeMillis();
+    long elapsedTime = endTime - startTime;
+    assertEquals(max, 1000000);
+    assertTrue(elapsedTime >= 0);
     }
 
 
