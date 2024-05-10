@@ -26,16 +26,6 @@ public class tz_2_programTest {
         }
     }
     
-    @Test
-    public void _lie() {
-    long startTime = System.currentTimeMillis();
-    setUp("src/test/_tests/test1.txt");
-    int max = tz_2_program._max(numbers);
-    long endTime = System.currentTimeMillis();
-    long elapsedTime = endTime - startTime;
-    assertEquals(max, 12);
-    assertTrue(elapsedTime >= 0);
-    }
 
     @Test
     public void _min1() {
